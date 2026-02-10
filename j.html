@@ -3,90 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>F.K Diversos</title>
+<title>F.K Diversos - Loja Pro</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-  body{background:#f4f6f9;overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{background:#f4f6f9;overflow-x:hidden}
 
-  header{background:#0f172a;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:1000}
-  nav{display:flex;justify-content:space-between;align-items:center}
-  .logo{font-weight:600;font-size:20px}
+/* HEADER */
+header{background:#0f172a;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:1000}
+nav{display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:600;font-size:20px}
 
-  /* GRID RESPONSIVO PRODUTOS */
-  .produtos{
-    padding:30px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-  }
+/* FILTROS */
+.filtros{display:flex;gap:10px;padding:20px;flex-wrap:wrap}
+.filtros button{padding:10px 15px;border:none;border-radius:8px;background:#0f172a;color:#fff;cursor:pointer;transition:.3s}
+.filtros button.active{background:#16a34a}
 
-  .card{
-    background:#fff;border-radius:14px;padding:15px;
-    box-shadow:0 10px 20px rgba(0,0,0,.05);
-    transition:.3s;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-  }
-  .card:hover{transform:translateY(-5px)}
-  .card img{width:100%;height:180px;object-fit:cover;border-radius:10px}
-  .card h3{margin:10px 0;font-size:1.1rem}
-  .card span{color:#16a34a;font-weight:600;font-size:1rem}
-  .card button{width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;background:#0f172a;color:#fff;cursor:pointer;font-size:1rem}
+/* GRID PRODUTOS */
+.produtos{
+  padding:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+}
+.card{
+  background:#fff;border-radius:14px;padding:15px;
+  box-shadow:0 8px 15px rgba(0,0,0,.05);
+  display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .3s, box-shadow .3s;
+}
+.card:hover{transform:translateY(-5px);box-shadow:0 15px 25px rgba(0,0,0,.1)}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:10px}
+.card h3{margin:10px 0;font-size:1rem}
+.card span{color:#16a34a;font-weight:600;font-size:.95rem}
+.card button{width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;background:#0f172a;color:#fff;cursor:pointer;font-size:.95rem;transition:.3s}
+.card button:hover{background:#16a34a}
 
-  /* BOTÃO ADMIN */
-  .admin-btn{position:fixed;bottom:20px;right:20px;background:#0f172a;color:#fff;padding:14px 18px;border-radius:50px;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.2);z-index:2000}
+/* CARRINHO */
+.carrinho{
+  position:fixed;top:20px;right:20px;background:#0f172a;color:#fff;padding:12px 18px;border-radius:50px;cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,.2);z-index:2000}
+.carrinho span{margin-left:8px;font-weight:600}
 
-  /* PAINEL ADMIN */
-  .admin-panel{
-    position:fixed;right:-100%;top:0;width:90%;max-width:400px;height:100%;background:#fff;
-    box-shadow:-5px 0 25px rgba(0,0,0,.1);padding:20px;
-    transition:right .45s cubic-bezier(.4,0,.2,1);overflow:auto;z-index:3000;
-    border-radius:0 0 0 10px;
-  }
-  .admin-panel.show{right:0}
+/* CARRINHO MODAL */
+.carrinho-modal{
+  position:fixed;top:0;right:-100%;width:90%;max-width:400px;height:100%;background:#fff;
+  box-shadow:-5px 0 25px rgba(0,0,0,.1);padding:20px;
+  transition:right .45s cubic-bezier(.4,0,.2,1);overflow:auto;z-index:2501;border-radius:0 0 0 10px;
+}
+.carrinho-modal.show{right:0}
+.carrinho-modal h2{margin-bottom:15px;font-size:1.3rem;display:flex;justify-content:space-between;align-items:center}
+.carrinho-modal h2 button{background:#dc2626;color:#fff;border:none;padding:5px 10px;border-radius:5px;cursor:pointer;font-size:1rem}
+.carrinho-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #ddd;font-size:1rem;gap:5px}
+.carrinho-item span{flex:1}
+.carrinho-item button{background:#dc2626;padding:4px 8px;color:#fff;border:none;border-radius:5px;cursor:pointer}
+.carrinho-item input{width:50px;padding:4px;border:1px solid #ddd;border-radius:5px;text-align:center}
+.carrinho-total{font-weight:600;font-size:1.2rem;margin-top:15px;text-align:right}
+.carrinho-finalizar{width:100%;margin-top:10px;padding:12px;background:#16a34a;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:1rem;transition:.3s}
+.carrinho-finalizar:hover{background:#0f172a}
 
-  .overlay{
-    position:fixed;inset:0;background:rgba(0,0,0,.4);
-    opacity:0;pointer-events:none;transition:.3s;z-index:2500
-  }
-  .overlay.show{opacity:1;pointer-events:auto}
+/* ADMIN PANEL */
+.admin-btn{position:fixed;bottom:20px;right:20px;background:#0f172a;color:#fff;padding:14px 18px;border-radius:50px;cursor:pointer;box-shadow:0 10px 20px rgba(0,0,0,.2);z-index:2002}
+.admin-panel{
+  position:fixed;right:-100%;top:0;width:90%;max-width:400px;height:100%;background:#fff;
+  box-shadow:-5px 0 25px rgba(0,0,0,.1);padding:20px;
+  transition:right .45s cubic-bezier(.4,0,.2,1);overflow:auto;z-index:3000;border-radius:0 0 0 10px;
+}
+.admin-panel.show{right:0}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:.3s;z-index:2500}
+.overlay.show{opacity:1;pointer-events:auto}
+.admin-panel h2{margin-bottom:15px;font-size:1.3rem;text-align:center}
+.admin-panel input,.admin-panel select{width:100%;margin-bottom:12px;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:1rem}
+.admin-panel button{width:100%;padding:14px;background:#0f172a;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:8px;font-size:1rem}
+.preview-img{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-top:8px;display:none}
+.produto-admin{background:#f1f5f9;padding:10px;border-radius:8px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-size:1rem}
+.produto-admin button{background:#dc2626;margin-top:0;padding:6px 10px;border:none;color:#fff;border-radius:5px;cursor:pointer}
+.dashboard{background:#0f172a;color:#fff;padding:15px;border-radius:10px;margin-bottom:15px}
+.dashboard span{display:block;font-size:22px;font-weight:600}
 
-  .admin-panel h2{margin-bottom:15px;font-size:1.4rem;text-align:center}
-  .admin-panel input,.admin-panel select{
-    width:100%;margin-bottom:12px;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:1rem
-  }
-  .admin-panel button{
-    width:100%;padding:14px;background:#0f172a;color:#fff;border:none;border-radius:8px;cursor:pointer;margin-top:8px;font-size:1rem
-  }
-  .preview-img{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-top:8px;display:none}
-
-  .produto-admin{background:#f1f5f9;padding:10px;border-radius:8px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;font-size:1rem}
-  .produto-admin button{background:#dc2626;margin-top:0;padding:6px 10px;border:none;color:#fff;border-radius:5px;cursor:pointer}
-  .dashboard{background:#0f172a;color:#fff;padding:15px;border-radius:10px;margin-bottom:15px}
-  .dashboard span{display:block;font-size:22px;font-weight:600}
-
-  /* RESPONSIVO */
-  @media(max-width:1024px){
-    .produtos{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
-    .card img{height:160px}
-  }
-  @media(max-width:768px){
-    .produtos{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));padding:15px;gap:15px}
-    .card img{height:140px}
-    .admin-panel{width:95%;max-width:none;border-radius:0;right:-100%;}
-    .admin-panel h2{font-size:1.2rem}
-    .admin-panel input,.admin-panel select,.admin-panel button{font-size:1rem;padding:12px}
-  }
-  @media(max-width:480px){
-    .card img{height:120px}
-    .card h3{font-size:.95rem}
-    .card span{font-size:.9rem}
-    .card button{font-size:.9rem;padding:8px}
-    .admin-panel input,.admin-panel select,.admin-panel button{font-size:.95rem;padding:10px}
-  }
+/* RESPONSIVO */
+@media(max-width:1024px){.produtos{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}.card img{height:140px}}
+@media(max-width:768px){.produtos{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));padding:15px;gap:15px}.card img{height:130px}.admin-panel{width:95%;max-width:none;border-radius:0;}}
+@media(max-width:480px){.card img{height:120px}.card h3{font-size:.95rem}.card span{font-size:.9rem}.card button{font-size:.9rem;padding:8px}.admin-panel input,.admin-panel select,.admin-panel button{font-size:.95rem;padding:10px}}
 </style>
 </head>
 <body>
@@ -97,13 +94,30 @@
   </nav>
 </header>
 
+<div class="filtros">
+  <button class="active" onclick="filtrar('Todos')">Todos</button>
+  <button onclick="filtrar('Roupas')">Roupas</button>
+  <button onclick="filtrar('Acessórios')">Acessórios</button>
+  <button onclick="filtrar('Eletrónicos')">Eletrônicos</button>
+</div>
+
 <section class="produtos" id="listaProdutos"></section>
 
+<!-- CARRINHO -->
+<div class="carrinho" onclick="abrirCarrinho()">🛒 <span id="countCarrinho">0</span></div>
+<div class="carrinho-modal" id="carrinhoModal">
+  <h2>Carrinho <button onclick="fecharCarrinho()">Fechar ✕</button></h2>
+  <div id="listaCarrinho"></div>
+  <div class="carrinho-total" id="totalCarrinho">Total: 0 kz</div>
+  <button class="carrinho-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+
+<!-- ADMIN -->
 <div class="admin-btn" onclick="abrirAdmin()">ADMIN</div>
-<div class="overlay" id="overlay" onclick="fecharAdmin()"></div>
+<div class="overlay" id="overlay" onclick="fecharTodos()"></div>
 
 <div class="admin-panel" id="adminPanel">
-  <button onclick="fecharAdmin()" style="background:#dc2626;margin-bottom:15px;font-size:1.1rem">Fechar ✕</button>
+  <button onclick="fecharTodos()" style="background:#dc2626;margin-bottom:15px;font-size:1.1rem">Fechar ✕</button>
 
   <div id="loginArea">
     <h2>Login Admin</h2>
@@ -113,7 +127,6 @@
 
   <div id="painelArea" style="display:none">
     <h2>Painel Vendas</h2>
-
     <div class="dashboard">
       Total de pedidos
       <span id="totalPedidos">0</span>
@@ -121,20 +134,14 @@
 
     <input type="text" id="nomeProduto" placeholder="Nome do produto">
     <input type="number" id="precoProduto" placeholder="Preço">
-
     <input type="file" id="imagemProduto" accept="image/*">
     <img id="preview" class="preview-img">
-
     <select id="categoriaProduto">
       <option>Roupas</option>
       <option>Acessórios</option>
       <option>Eletrónicos</option>
     </select>
-
     <button onclick="adicionarProduto()">Adicionar Produto</button>
-
-    <h3 style="margin-top:15px">Pedidos recebidos</h3>
-    <div id="listaPedidos"></div>
 
     <h3 style="margin-top:15px">Produtos cadastrados</h3>
     <div id="listaAdmin"></div>
@@ -142,99 +149,88 @@
 </div>
 
 <script>
-const senhaSistema = "1234";
-let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
+const senhaSistema="1234";
+let produtos=JSON.parse(localStorage.getItem('produtos'))||[];
+let carrinho=JSON.parse(localStorage.getItem('carrinho'))||[];
 let imagemBase64="";
 
-function abrirAdmin(){
-  document.getElementById('adminPanel').classList.add('show')
-  document.getElementById('overlay').classList.add('show')
-  document.body.style.overflow='hidden'
+// ADMIN
+function abrirAdmin(){document.getElementById('adminPanel').classList.add('show');document.getElementById('overlay').classList.add('show');document.body.style.overflow='hidden'}
+function fecharAdmin(){document.getElementById('adminPanel').classList.remove('show');document.getElementById('overlay').classList.remove('show');document.body.style.overflow='auto'}
+function abrirCarrinho(){document.getElementById('carrinhoModal').classList.add('show');document.getElementById('overlay').classList.add('show');document.body.style.overflow='hidden';renderCarrinho()}
+function fecharCarrinho(){document.getElementById('carrinhoModal').classList.remove('show');document.getElementById('overlay').classList.remove('show');document.body.style.overflow='auto'}
+function fecharTodos(){fecharAdmin();fecharCarrinho()}
+
+// LOGIN ADMIN
+function logar(){const senha=document.getElementById('senha').value;if(senha===senhaSistema){loginArea.style.display='none';painelArea.style.display='block';carregarAdmin()}else alert('Senha incorreta')}
+
+// UPLOAD IMAGEM
+imagemProduto.addEventListener('change',function(){const file=this.files[0];if(!file)return;const reader=new FileReader();reader.onload=e=>{imagemBase64=e.target.result;preview.src=imagemBase64;preview.style.display='block'};reader.readAsDataURL(file)})
+
+// ADICIONAR PRODUTO
+function adicionarProduto(){const nome=nomeProduto.value;const preco=precoProduto.value;const categoria=categoriaProduto.value;if(!nome||!preco||!imagemBase64){alert('Preencha tudo');return}produtos.push({nome,preco,imagem:imagemBase64,categoria});localStorage.setItem('produtos',JSON.stringify(produtos));renderProdutos();carregarAdmin()}
+
+// RENDER PRODUTOS
+function renderProdutos(filtro='Todos'){listaProdutos.innerHTML='';produtos.forEach((p,i)=>{if(filtro==='Todos'||p.categoria===filtro)listaProdutos.innerHTML+=`<div class="card"><img src="${p.imagem}"><h3>${p.nome}</h3><span>${p.preco} kz</span><button onclick="adicionarCarrinho(${i})">Comprar</button></div>`});atualizarFiltros(filtro)}
+function filtrar(categoria){renderProdutos(categoria)}
+function atualizarFiltros(categoria){document.querySelectorAll('.filtros button').forEach(btn=>btn.classList.remove('active'));document.querySelector(`.filtros button[onclick="filtrar('${categoria}')"]`)?.classList.add('active')}
+
+// CARRINHO
+function adicionarCarrinho(i){
+    const p = {...produtos[i], quantidade:1};
+    carrinho.push(p);
+    localStorage.setItem('carrinho',JSON.stringify(carrinho));
+    atualizarCarrinho();
+    alert(produtos[i].nome+' adicionado ao carrinho!')
 }
 
-function fecharAdmin(){
-  document.getElementById('adminPanel').classList.remove('show')
-  document.getElementById('overlay').classList.remove('show')
-  document.body.style.overflow='auto'
+function renderCarrinho(){
+    listaCarrinho.innerHTML='';
+    let total=0;
+    carrinho.forEach((p,i)=>{
+        listaCarrinho.innerHTML+=`
+        <div class="carrinho-item">
+            <span>${p.nome} - ${p.preco} kz</span>
+            <input type="number" value="${p.quantidade}" min="1" onchange="alterarQuantidade(${i},this.value)">
+            <button onclick="removerCarrinho(${i})">X</button>
+        </div>`;
+        total+=parseFloat(p.preco)*p.quantidade;
+    });
+    totalCarrinho.textContent='Total: '+total+' kz';
 }
 
-function logar(){
-  const senha=document.getElementById('senha').value
-  if(senha===senhaSistema){
-    loginArea.style.display='none'
-    painelArea.style.display='block'
-    carregarAdmin()
-    carregarPedidos()
-  }else alert('Senha incorreta')
+function alterarQuantidade(i,val){
+    val = parseInt(val);
+    if(val<1) val=1;
+    carrinho[i].quantidade=val;
+    localStorage.setItem('carrinho',JSON.stringify(carrinho));
+    renderCarrinho();
 }
 
-imagemProduto.addEventListener('change',function(){
-  const file=this.files[0]
-  if(!file)return
-  const reader=new FileReader()
-  reader.onload=e=>{
-    imagemBase64=e.target.result
-    preview.src=imagemBase64
-    preview.style.display='block'
-  }
-  reader.readAsDataURL(file)
-})
+function removerCarrinho(i){carrinho.splice(i,1);localStorage.setItem('carrinho',JSON.stringify(carrinho));renderCarrinho();atualizarCarrinho()}
+function atualizarCarrinho(){countCarrinho.textContent=carrinho.length}
 
-function adicionarProduto(){
-  const nome=nomeProduto.value
-  const preco=precoProduto.value
-  const categoria=categoriaProduto.value
-  if(!nome||!preco||!imagemBase64){alert('Preencha tudo');return}
-  produtos.push({nome,preco,imagem:imagemBase64,categoria})
-  localStorage.setItem('produtos',JSON.stringify(produtos))
-  renderProdutos();carregarAdmin()
+// FINALIZAR COMPRA
+function finalizarCompra(){
+    if(carrinho.length===0){alert('Carrinho vazio');return}
+    let msg='Olá! Quero comprar os seguintes produtos:\n';
+    let total=0;
+    carrinho.forEach(p=>{
+        msg+=`- ${p.nome} - ${p.preco} kz x ${p.quantidade}\n`;
+        total+=parseFloat(p.preco)*p.quantidade;
+    });
+    msg+=`Total: ${total} kz`;
+    window.open(`https://wa.me/929764090?text=${encodeURIComponent(msg)}`);
+    carrinho=[];localStorage.setItem('carrinho',JSON.stringify(carrinho));
+    renderCarrinho();atualizarCarrinho();fecharCarrinho()
 }
 
-function renderProdutos(){
-  listaProdutos.innerHTML=''
-  produtos.forEach((p,i)=>{
-    listaProdutos.innerHTML+=`
-      <div class="card">
-        <img src="${p.imagem}">
-        <h3>${p.nome}</h3>
-        <span>${p.preco} kz</span>
-        <button onclick="comprar(${i})">Comprar</button>
-      </div>`
-  })
-}
+// ADMIN
+function carregarAdmin(){listaAdmin.innerHTML='';produtos.forEach((p,i)=>{listaAdmin.innerHTML+=`<div class="produto-admin">${p.nome}<button onclick="apagar(${i})">Apagar</button></div>`})}
+function apagar(i){produtos.splice(i,1);localStorage.setItem('produtos',JSON.stringify(produtos));renderProdutos();carregarAdmin()}
 
-function comprar(i){
-  const p=produtos[i]
-  pedidos.push(p)
-  localStorage.setItem('pedidos',JSON.stringify(pedidos))
-  carregarPedidos()
-  const msg=`Olá quero comprar ${p.nome} - ${p.preco} kz`
-  window.open(`https://wa.me/929764090?text=${encodeURIComponent(msg)}`)
-}
-
-function carregarAdmin(){
-  listaAdmin.innerHTML=''
-  produtos.forEach((p,i)=>{
-    listaAdmin.innerHTML+=`<div class="produto-admin">${p.nome}<button onclick="apagar(${i})">Apagar</button></div>`
-  })
-}
-
-function apagar(i){
-  produtos.splice(i,1)
-  localStorage.setItem('produtos',JSON.stringify(produtos))
-  renderProdutos();carregarAdmin()
-}
-
-function carregarPedidos(){
-  listaPedidos.innerHTML=''
-  totalPedidos.textContent=pedidos.length
-  pedidos.forEach(p=>{
-    listaPedidos.innerHTML+=`<div class="produto-admin">${p.nome} - ${p.preco} kz</div>`
-  })
-}
-
-renderProdutos();carregarPedidos()
+// INIT
+renderProdutos();atualizarCarrinho()
 </script>
 
 </body>
