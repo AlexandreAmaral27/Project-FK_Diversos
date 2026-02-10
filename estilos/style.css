@@ -81,9 +81,9 @@
     .submenu li a:hover {
       background-color: #3f3f80;
     }
-    .menu-item:hover .submenu {
+    /* .menu-item:hover .submenu {
       display: block;
-    }
+    } */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }

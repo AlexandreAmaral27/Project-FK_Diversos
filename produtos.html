@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>F.K Diversos - Loja Pro</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.k_Diversos</title>
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="estilos/mediaquery.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600 display=swap"rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"/>
+  
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
-body{background:#f4f6f9;overflow-x:hidden}
+  <style>
 
-/* HEADER */
-header{background:#0f172a;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:1000}
-nav{display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:600;font-size:20px}
+
+
 
 /* FILTROS */
 .filtros{display:flex;gap:10px;padding:20px;flex-wrap:wrap}
@@ -27,7 +30,7 @@ nav{display:flex;justify-content:space-between;align-items:center}
   gap:20px;
 }
 .card{
-  background:#fff;border-radius:14px;padding:15px;
+ background: #ffffff0d;border-radius:14px;padding:15px;
   box-shadow:0 8px 15px rgba(0,0,0,.05);
   display:flex;flex-direction:column;justify-content:space-between;
   transition:transform .3s, box-shadow .3s;
@@ -87,14 +90,50 @@ nav{display:flex;justify-content:space-between;align-items:center}
 </style>
 </head>
 <body>
+  <header>
+    <nav>
+    <div class="logo" id="logo"><a href="index.html"><img src="imagens/logo.png" alt=""></a><a href="index.html"></a></div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+   <ul class="menu" id="mainMenu">
+      <li class="menu-item"><a href="index.html" onclick="toggleSubmenu(event)">Home</a>
+      
+      </li>  
 
-<header>
-  <nav>
-    <div class="logo">F.K Diversos</div>
+      <li class="menu-item"><a href="produtos.html" onclick="toggleSubmenu(event)">Produtos</a>
+      
+      </li>
+   
+
+        <li class="menu-item"><a href="#" onclick="toggleSubmenu(event)">Acessórios</a>
+      
+      </li>
+
+      <li class="menu-item"><a href="#" onclick="toggleSubmenu(event)">Novidades</a>
+        
+      </li>
+    
+  
+      
+    </ul>
+    <div class="bolsa-de-compras">
+      <!-- CARRINHO -->
+    <div class="carrinho" onclick="abrirCarrinho()">🛒 <span id="countCarrinho">0</span></div>
+    <div class="carrinho-modal" id="carrinhoModal">
+    <h2>Carrinho <button onclick="fecharCarrinho()">Fechar ✕</button></h2>
+    <div id="listaCarrinho"></div>
+    <div class="carrinho-total" id="totalCarrinho">Total: 0 kz</div>
+    <button class="carrinho-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+    </div>
   </nav>
-</header>
+  </header>
 
-<div class="filtros">
+  <main>
+    <div class="filtros">
   <button class="active" onclick="filtrar('Todos')">Todos</button>
   <button onclick="filtrar('Roupas')">Roupas</button>
   <button onclick="filtrar('Acessórios')">Acessórios</button>
@@ -103,16 +142,8 @@ nav{display:flex;justify-content:space-between;align-items:center}
 
 <section class="produtos" id="listaProdutos"></section>
 
-<!-- CARRINHO -->
-<div class="carrinho" onclick="abrirCarrinho()">🛒 <span id="countCarrinho">0</span></div>
-<div class="carrinho-modal" id="carrinhoModal">
-  <h2>Carrinho <button onclick="fecharCarrinho()">Fechar ✕</button></h2>
-  <div id="listaCarrinho"></div>
-  <div class="carrinho-total" id="totalCarrinho">Total: 0 kz</div>
-  <button class="carrinho-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
-</div>
 
-<!-- ADMIN -->
+     <!-- ADMIN -->
 <div class="admin-btn" onclick="abrirAdmin()">ADMIN</div>
 <div class="overlay" id="overlay" onclick="fecharTodos()"></div>
 
@@ -148,7 +179,75 @@ nav{display:flex;justify-content:space-between;align-items:center}
   </div>
 </div>
 
-<script>
+  </main>
+
+ <footer>
+      <div class="hero">
+        <div class="header">
+          <h2>
+            Not sure of the <br />
+            right plan for you?
+          </h2>
+          <p>
+            We have a great team here at SaturnChat<br />
+            waiting to help you with anything.
+          </p>
+        </div>
+        <button class="box-btn">
+          Let's Chat
+          <span class="material-symbols-outlined"> north_east </span>
+        </button>
+        <img src="imagens/bg.png" class="bg" />
+      </div>
+      <div class="content">
+        <img class="logo" src="imagens/logo.svg" />
+
+        <nav>
+          <ul>
+            <li><h3>Developers</h3></li>
+            <li><a>Docs</a></li>
+            <li><a>Tutorials</a></li>
+            <li><a>Examples</a></li>
+            <li><a>API</a></li>
+          </ul>
+          <ul>
+            <li><h3>Company</h3></li>
+            <li><a>About</a></li>
+            <li><a>Careers</a></li>
+            <li><a>Pricing</a></li>
+            <li><a>Legal</a></li>
+          </ul>
+          <ul>
+            <li><h3>Social</h3></li>
+            <li><a>Tiktok</a></li>
+            <li><a>Instagram</a></li>
+            <li><a>Facebbook</a></li>
+          </ul>
+        </nav>
+        <button class="box-btn support-btn">
+          Contact Sales
+          <span class="material-symbols-outlined"> north_east </span>
+        </button>
+      </div>
+    </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mainMenu');
+      const hamburger = document.getElementById('hamburger');
+      menu.classList.toggle('show');
+      hamburger.classList.toggle('active');
+    }
+
+    function toggleSubmenu(event) {
+      const menuItem = event.target.closest('.menu-item');
+      if (window.innerWidth <= 768) {
+        event.preventDefault();
+        menuItem.classList.toggle('active');
+      }
+    }
+  </script>
+  <script>
 const senhaSistema="1234";
 let produtos=JSON.parse(localStorage.getItem('produtos'))||[];
 let carrinho=JSON.parse(localStorage.getItem('carrinho'))||[];
@@ -232,6 +331,8 @@ function apagar(i){produtos.splice(i,1);localStorage.setItem('produtos',JSON.str
 // INIT
 renderProdutos();atualizarCarrinho()
 </script>
+
+
 
 </body>
 </html>
