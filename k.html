@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>F.K Diversos - Loja Completa</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+    body{background:#f5f5f5}
+
+    header{background:#111;color:#fff;padding:15px 20px;position:sticky;top:0;z-index:999}
+    .logo{font-size:20px;font-weight:600}
+
+    .banner{background:#000;color:#fff;padding:60px;text-align:center}
+
+    .controls{display:flex;gap:10px;padding:20px;flex-wrap:wrap}
+    .controls input,.controls select{padding:10px;border-radius:8px;border:1px solid #ccc}
+
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:20px}
+
+    .card{background:#fff;padding:15px;border-radius:12px;box-shadow:0 5px 12px rgba(0,0,0,.1);text-align:center}
+    .card img{width:100%;height:200px;object-fit:cover}
+
+    .price{color:#ff6600;font-weight:600;margin:10px 0}
+
+    .btn{background:#111;color:#fff;border:none;padding:10px;width:100%;cursor:pointer;margin-top:8px;border-radius:8px}
+
+    .cart{position:fixed;right:20px;top:100px;background:#fff;padding:15px;border-radius:12px;box-shadow:0 5px 12px rgba(0,0,0,.2);width:260px}
+
+    .admin-toggle{position:fixed;left:20px;bottom:20px;background:#111;color:#fff;padding:12px 16px;border-radius:50px;cursor:pointer}
+
+    .admin-panel{position:fixed;left:0;top:0;height:100vh;width:350px;background:#fff;box-shadow:5px 0 15px rgba(0,0,0,.2);padding:20px;transform:translateX(-100%);transition:.3s;overflow:auto}
+    .admin-panel.active{transform:translateX(0)}
+
+    .admin-panel input,.admin-panel select{width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc}
+
+    .admin-produto{background:#f2f2f2;padding:10px;margin-top:10px;border-radius:8px}
+
+    footer{background:#111;color:#fff;padding:40px;text-align:center}
+
+    @media(max-width:1024px){.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.grid{grid-template-columns:1fr}.cart{position:static;width:100%;margin:20px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">F.K Diversos</div>
+</header>
+
+<section class="banner">
+  <h1>Loja Oficial F.K Diversos</h1>
+</section>
+
+<div class="controls">
+  <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
+  <select id="categoria">
+    <option value="todos">Todas categorias</option>
+    <option value="roupa">Roupas</option>
+    <option value="eletronico">Eletrónicos</option>
+    <option value="acessorio">Acessórios</option>
+  </select>
+</div>
+
+<section class="grid" id="produtos"></section>
+
+<div class="cart">
+  <h3>Carrinho</h3>
+  <ul id="listaCarrinho"></ul>
+  <strong id="total"></strong>
+  <button class="btn" onclick="checkout()">Finalizar Pedido</button>
+</div>
+
+<div class="admin-toggle" onclick="abrirLogin()">Admin</div>
+
+<div class="admin-panel" id="adminPanel">
+
+  <div id="loginArea">
+    <h3>Login Admin</h3>
+    <input type="password" id="senhaAdmin" placeholder="Senha">
+    <button class="btn" onclick="loginAdmin()">Entrar</button>
+  </div>
+
+  <div id="adminArea" style="display:none">
+    <h3>Adicionar / Editar Produto</h3>
+    <input type="text" id="nomeProduto" placeholder="Nome">
+    <input type="number" id="precoProduto" placeholder="Preço">
+    <input type="text" id="imgProduto" placeholder="Imagem">
+    <select id="catProduto">
+      <option value="roupa">Roupa</option>
+      <option value="eletronico">Eletrónico</option>
+      <option value="acessorio">Acessório</option>
+    </select>
+    <button class="btn" onclick="salvarProduto()">Salvar Produto</button>
+
+    <h3 style="margin-top:20px">Produtos cadastrados</h3>
+    <div id="listaAdmin"></div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 F.K Diversos</p>
+</footer>
+
+<script>
+
+const numeroWhatsApp = "244929764090";
+const senhaSistema = "1234";
+
+let carrinho = [];
+let listaProdutos = JSON.parse(localStorage.getItem('produtos')) || [
+  {nome:"Camiseta", preco:20000, img:"imagens/produto1.jpg", categoria:"roupa"},
+  {nome:"Fone Bluetooth", preco:18000, img:"imagens/produto2.jpg", categoria:"eletronico"}
+];
+
+let editIndex = null;
+
+function salvarLocal(){
+  localStorage.setItem('produtos',JSON.stringify(listaProdutos));
+}
+
+function render(){
+  const termo = pesquisa.value.toLowerCase();
+  const categoria = document.getElementById('categoria').value;
+
+  produtos.innerHTML='';
+
+  listaProdutos
+  .filter(p=>categoria==='todos'||p.categoria===categoria)
+  .filter(p=>p.nome.toLowerCase().includes(termo))
+  .forEach((p,i)=>{
+    produtos.innerHTML+=`
+      <div class="card">
+        <img src="${p.img}">
+        <h3>${p.nome}</h3>
+        <p class="price">${p.preco.toLocaleString()} kz</p>
+        <button class="btn" onclick="addCarrinho('${p.nome}',${p.preco})">Comprar</button>
+      </div>`;
+  });
+}
+
+function renderAdmin(){
+  listaAdmin.innerHTML='';
+
+  listaProdutos.forEach((p,i)=>{
+    listaAdmin.innerHTML+=`
+      <div class="admin-produto">
+        <strong>${p.nome}</strong><br>
+        ${p.preco} kz
+        <button class="btn" onclick="editarProduto(${i})">Editar</button>
+        <button class="btn" onclick="removerProduto(${i})">Apagar</button>
+      </div>`;
+  });
+}
+
+render();
+
+pesquisa.addEventListener('input',render);
+categoria.addEventListener('change',render);
+
+function addCarrinho(nome,preco){
+  carrinho.push({nome,preco});
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho(){
+  listaCarrinho.innerHTML='';
+  let total=0;
+
+  carrinho.forEach(i=>{
+    total+=i.preco;
+    listaCarrinho.innerHTML+=`<li>${i.nome} - ${i.preco} kz</li>`;
+  });
+
+  total.innerText='Total: '+total.toLocaleString()+' kz';
+}
+
+function checkout(){
+  let mensagem='Pedido:%0A';
+  carrinho.forEach(i=>mensagem+=`• ${i.nome} - ${i.preco} kz%0A`);
+  window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`);
+}
+
+function abrirLogin(){
+  adminPanel.classList.toggle('active');
+}
+
+function loginAdmin(){
+  if(senhaAdmin.value===senhaSistema){
+    loginArea.style.display='none';
+    adminArea.style.display='block';
+    renderAdmin();
+  }else alert('Senha incorreta');
+}
+
+function salvarProduto(){
+  let produto={
+    nome:nomeProduto.value,
+    preco:parseInt(precoProduto.value),
+    img:imgProduto.value,
+    categoria:catProduto.value
+  };
+
+  if(editIndex===null){
+    listaProdutos.push(produto);
+  }else{
+    listaProdutos[editIndex]=produto;
+    editIndex=null;
+  }
+
+  salvarLocal();
+  render();
+  renderAdmin();
+}
+
+function editarProduto(i){
+  let p=listaProdutos[i];
+  nomeProduto.value=p.nome;
+  precoProduto.value=p.preco;
+  imgProduto.value=p.img;
+  catProduto.value=p.categoria;
+  editIndex=i;
+}
+
+function removerProduto(i){
+  listaProdutos.splice(i,1);
+  salvarLocal();
+  render();
+  renderAdmin();
+}
+
+</script>
+
+</body>
+</html>
