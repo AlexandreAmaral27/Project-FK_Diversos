@@ -100,7 +100,11 @@
 .hero p{margin-bottom:30px;font-size:20px;opacity:.9;}
 .hero button{padding:15px 40px;border:none;border-radius:30px;background:var(--gradient);background-color:#f900e9;color: white;font-weight:600;cursor:pointer;transition:.3s;}
 .hero button:hover{transform:scale(1.1);}
-
+.hero button a{
+  text-decoration: none;
+  font-weight: bold;
+   color: #fff;
+}
 /* SEÇÕES */
 section{padding:80px 8%;}
 
@@ -170,27 +174,13 @@ h2{text-align:center;margin-bottom:50px;font-size:32px;color:var(--secondary);}
       <div></div>
       <div></div>
     </div>
-    <ul class="menu" id="mainMenu">
-      <li class="menu-item"><a href="index.html" onclick="toggleSubmenu(event)">Home</a>
-      
-      </li>  
+   <ul class="menu" id="mainMenu">
+  <li class="menu-item"><a href="index.html">Home</a></li>
+  <li class="menu-item"><a href="produtos.html">Produtos</a></li>
+  <li class="menu-item"><a href="#">Sobre</a></li>
+  <li class="menu-item"><a href="#">Novidades</a></li>
+</ul>
 
-      <li class="menu-item"><a href="produtos.html" onclick="toggleSubmenu(event)">Produtos</a>
-      
-      </li>
-   
-
-        <li class="menu-item"><a href="#" onclick="toggleSubmenu(event)">Sobre</a>
-      
-      </li>
-
-      <li class="menu-item"><a href="#" onclick="toggleSubmenu(event)">Novidades</a>
-        
-      </li>
-    
-  
-      
-    </ul>
     <div class="bolsa-de-compras">
       <!-- CARRINHO -->
     <div class="carrinho" onclick="abrirCarrinho()">❤ <span id="countCarrinho">F.K</span></div>

@@ -60,7 +60,7 @@
       transition: background 0.3s ease;
     }
     .menu-item > a:hover {
-      background-color: #2e2e70;
+      background-color:#2e2e701f;
       border-radius: 5px;
     }
     .submenu {
