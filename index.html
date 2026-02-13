@@ -402,41 +402,10 @@ h2{text-align:center;margin-bottom:50px;font-size:32px;color:var(--secondary);}
 
 
 
-     <!-- ADMIN -->
-<div class="admin-btn" onclick="abrirAdmin()">ADMIN</div>
-<div class="overlay" id="overlay" onclick="fecharTodos()"></div>
+ 
+ 
 
-<div class="admin-panel" id="adminPanel">
-  <button onclick="fecharTodos()" style="background:#dc2626;margin-bottom:15px;font-size:1.1rem">Fechar ✕</button>
 
-  <div id="loginArea">
-    <h2>Login Admin</h2>
-    <input type="password" id="senha" placeholder="Senha">
-    <button onclick="logar()">Entrar</button>
-  </div>
-
-  <div id="painelArea" style="display:none">
-    <h2>Painel Vendas</h2>
-    <div class="dashboard">
-      Total de pedidos
-      <span id="totalPedidos">0</span>
-    </div>
-
-    <input type="text" id="nomeProduto" placeholder="Nome do produto">
-    <input type="number" id="precoProduto" placeholder="Preço">
-    <input type="file" id="imagemProduto" accept="image/*">
-    <img id="preview" class="preview-img">
-    <select id="categoriaProduto">
-      <option>Roupas</option>
-      <option>Acessórios</option>
-      <option>Eletrónicos</option>
-    </select>
-    <button onclick="adicionarProduto()">Adicionar Produto</button>
-
-    <h3 style="margin-top:15px">Produtos cadastrados</h3>
-    <div id="listaAdmin"></div>
-  </div>
-</div>
 
   </main>
 
