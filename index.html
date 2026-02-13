@@ -87,6 +87,79 @@
 @media(max-width:768px){.produtos{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));padding:15px;gap:15px}.card img{height:130px}.admin-panel{width:95%;max-width:none;border-radius:0;}}
 @media(max-width:480px){.card img{height:120px}.card h3{font-size:.95rem}.card span{font-size:.9rem}.card button{font-size:.9rem;padding:8px}.admin-panel input,.admin-panel select,.admin-panel button{font-size:.95rem;padding:10px}}
 </style>
+<style>
+
+
+
+/* HERO */
+.hero02{background:url('https://images.unsplash.com/photo-1521334884684-d80222895322') center/cover no-repeat;}
+.hero{height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;color:white;position:relative;}
+.hero::before{content:'';position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.65);}
+.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero h1{font-size:60px;margin-bottom:20px;}
+.hero p{margin-bottom:30px;font-size:20px;opacity:.9;}
+.hero button{padding:15px 40px;border:none;border-radius:30px;background:var(--gradient);background-color:#f900e9;color: white;font-weight:600;cursor:pointer;transition:.3s;}
+.hero button:hover{transform:scale(1.1);}
+
+/* SEÇÕES */
+section{padding:80px 8%;}
+
+h2{text-align:center;margin-bottom:50px;font-size:32px;color:var(--secondary);}
+.products, .highlights, .new-arrivals, .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;}
+
+/* CARD */
+.card{background:rgba(85, 84, 84, 0.082);border-radius:20px;overflow:hidden;box-shadow:var(--shadow);transition:.4s;}
+.card:hover{transform:translateY(-10px);}
+.card img{width:100%;height:300px;object-fit:cover;}
+.card-content{padding:20px;}
+.card h3{margin-bottom:10px;color:var(--secondary);}
+.price{color:var(--primary);font-weight:700;margin:10px 0;}
+.card button{width:100%;padding:12px;border:none;background:var(--secondary);color:white;border-radius:8px;cursor:pointer;transition:.3s;}
+.card button:hover{background:var(--primary);}
+
+/* CATEGORIES */
+.category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.category{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;}
+.category img{width:100%;height:300px;object-fit:cover;transition:.4s;}
+.category:hover img{transform:scale(1.1);}
+.category span{position:absolute;bottom:20px;left:20px;color:white;font-size:22px;font-weight:600;}
+
+/* PROMO */
+.promo{background:var(--gradient);color:rgb(255, 255, 255);text-align:center;padding:50px 20px;font-size:22px;font-weight:600;border-radius:20px;}
+
+/* STATS */
+.stats{display:flex;justify-content:space-around;padding:60px 8%;background:rgba(85, 84, 84, 0.082);text-align:center;flex-wrap:wrap;gap:30px;}
+.stat h3{font-size:40px;color:var(--primary);}
+.stat p{font-weight:500;color:var(--secondary);}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;}
+.gallery-grid img{width:100%;height:150px;object-fit:cover;border-radius:10px;transition:.3s;}
+.gallery-grid img:hover{opacity:.7;}
+
+/* TESTIMONIALS */
+.testimonial{background:rgba(85, 84, 84, 0.082);padding:20px;border-radius:20px;box-shadow:var(--shadow);}
+.testimonial p{font-style:italic;margin-bottom:15px;}
+.testimonial h4{color:var(--primary);}
+
+/* NEWSLETTER */
+.newsletter{background:var(--secondary);color:white;text-align:center;padding:60px 20px;border-radius:20px;}
+.newsletter input{padding:12px;width:250px;border:none;border-radius:30px;margin-right:10px;}
+.newsletter button{padding:12px 25px;border:none;border-radius:30px;background:var(--primary);color:white;cursor:pointer;transition:.3s;}
+.newsletter button:hover{background:var(--gradient);}
+
+
+/* WHATSAPP */
+.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:15px;border-radius:50%;font-size:24px;cursor:pointer;box-shadow:0 5px 15px rgba(0,0,0,0.3);}
+
+/* RESPONSIVO */
+@media(max-width:768px){
+.hero h1{font-size:36px;}
+.stats{flex-direction:column;}
+
+
+}
+</style>
 </head>
 <body>
   <header>
@@ -120,18 +193,133 @@
     </ul>
     <div class="bolsa-de-compras">
       <!-- CARRINHO -->
-    <div class="carrinho" onclick="abrirCarrinho()">🛒 <span id="countCarrinho">0</span></div>
-    <div class="carrinho-modal" id="carrinhoModal">
-    <h2>Carrinho <button onclick="fecharCarrinho()">Fechar ✕</button></h2>
-    <div id="listaCarrinho"></div>
-    <div class="carrinho-total" id="totalCarrinho">Total: 0 kz</div>
-    <button class="carrinho-finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
-    </div>
+    <div class="carrinho" onclick="abrirCarrinho()">❤ <span id="countCarrinho">F.K</span></div>
+  
     </div>
   </nav>
   </header>
 
   <main>
+  
+
+<!-- HERO -->
+<section class="hero hero02">
+<div class="hero-content">
+<h1>Nova Coleção 2026</h1>
+<p>Moda que transforma seu estilo</p>
+<button><a href="produtos.html">Comprar Agora</a></button>
+</div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+<h2>Categorias</h2>
+<div class="category-grid">
+<div class="category"><img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f"><span>Roupas</span></div>
+<div class="category"><img src="imagens/logo.png"><span>Bolsas</span></div>
+<div class="category"><img src="imagens/logo.png"><span>Acessórios</span></div>
+</div>
+</section>
+
+<!-- PROMO -->
+<section class="promo">🔥 Promoção Especial: Até 50% OFF na Nova Coleção!</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights">
+<h2>Destaques da Semana</h2>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+<div class="card-content">
+<h3>Vestido Elegante</h3>
+</div>
+</div>
+<div class="card">
+<img src="imagens/logo.png">
+<div class="card-content">
+<h3>Bolsa Premium</h3>
+</div>
+</div>
+<div class="card">
+<img src="imagens/logo.png">
+<div class="card-content">
+<h3>Relógio Fashion</h3>
+</div>
+</div>
+</section>
+
+<!-- NEW ARRIVALS -->
+<section class="new-arrivals">
+<h2>Novidades</h2>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+<div class="card-content">
+<h3>Jaqueta Urbana</h3>
+
+</div>
+</div>
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+<div class="card-content">
+<h3>Mochila Street</h3>
+
+</div>
+</div>
+<div class="card">
+<img src="imagens/logo.png">
+<div class="card-content">
+<h3>Óculos de Sol</h3>
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+<div class="stat"><h3 id="clients">0</h3><p>Clientes</p></div>
+<div class="stat"><h3 id="sales">0</h3><p>Vendas</p></div>
+<div class="stat"><h3 id="products">0</h3><p>Produtos</p></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+<h2>O que nossos clientes dizem</h2>
+<div class="testimonial">
+<p>"Adoro os produtos! Qualidade incrível e entrega rápida."</p>
+<h4>- Mariana S.</h4>
+</div>
+<div class="testimonial">
+<p>"A loja UrbanStyle sempre tem novidades estilosas. Recomendo!"</p>
+<h4>- Lucas P.</h4>
+</div>
+<div class="testimonial">
+<p>"Comprei uma bolsa e estou apaixonada pelo acabamento."</p>
+<h4>- Camila R.</h4>
+</div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery">
+<h2>@F.k_Diversos</h2>
+<div class="gallery-grid">
+<img src="https://images.unsplash.com/photo-1520975916090-3105956dac38">
+<img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f">
+<img src="imagens/logo.png">
+<img src="imagens/logo.png">
+</div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+<h2>Receba Ofertas Exclusivas</h2>
+<input type="email" placeholder="Seu e-mail">
+<button>Inscrever</button>
+</section>
+
+
+
+
+
+
+
      <!-- ADMIN -->
 <div class="admin-btn" onclick="abrirAdmin()">ADMIN</div>
 <div class="overlay" id="overlay" onclick="fecharTodos()"></div>
@@ -174,12 +362,12 @@
       <div class="hero">
         <div class="header">
           <h2>
-            Not sure of the <br />
-            right plan for you?
+            Não tem certeza<br /> de qual plano é o ideal para você? 
+           
           </h2>
           <p>
-            We have a great team here at SaturnChat<br />
-            waiting to help you with anything.
+           Temos uma ótima equipe aqui no SaturnChat
+           pronta para te ajudar com qualquer coisa.
           </p>
         </div>
         <button class="box-btn">
@@ -208,9 +396,9 @@
           </ul>
           <ul>
             <li><h3>Social</h3></li>
-            <li><a>Tiktok</a></li>
-            <li><a>Instagram</a></li>
-            <li><a>Facebbook</a></li>
+            <li><a href="https://www.tiktok.com/@flazia_kobe?is_from_webapp=1&sender_device=pc">Tiktok</a></li>
+            <li><a href="">Instagram</a></li>
+            <li><a>Facebbook</a></l i>
           </ul>
         </nav>
         <button class="box-btn support-btn">
@@ -319,6 +507,23 @@ function apagar(i){produtos.splice(i,1);localStorage.setItem('produtos',JSON.str
 
 // INIT
 renderProdutos();atualizarCarrinho()
+</script>
+
+<script>
+function counter(id,target){
+let count=0;
+let element=document.getElementById(id);
+let interval=setInterval(()=>{
+count+=Math.ceil(target/100);
+if(count>=target){count=target;clearInterval(interval);}
+element.innerText=count;
+},20);
+}
+window.addEventListener("load",()=>{
+counter("clients",5000);
+counter("sales",12000);
+counter("products",350);
+});
 </script>
 </body>
 </html>
